@@ -87,7 +87,7 @@
                     if (erro) {
                         console.log("ConsultarData");
                         console.error(erro);
-                        alert("Houve um erro na tentativa de consulta");
+                        alert("Ata inexistente ou não registrada");
                         frmPesquisa2.numeroAta.value = "";
                         return
                     }
@@ -119,7 +119,7 @@
                     if (erro) {
                         console.log("ArquivarAta");
                         console.error(erro);
-                        alert("Houve um erro ao arquivar esta ata");
+                        alert("Ocorreu um erro - documento não registrado");
                         return
                     }
                     waitForTxToBeMined(resultado, "#statusTransacao");
