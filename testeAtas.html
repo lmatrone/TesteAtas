@@ -1,131 +1,131 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
+    <!DOCTYPE html>
+    <html lang="pt">
+    <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>Sistema de Consulta e Registro de Atas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Sistema de Consulta e Registro de Atas</title>
 
-</head>
+    </head>
 
-<body>
-    <div class="container-fluid bg-2 text-center">
-   
-        <h1> <font face="Garamond">Consulta de Deliberações Societárias </font> </h1>
-        <h2> <font face="Garamond"><b>ABC Brasil S.A.</b></font></h2></div>
-        <br>
-        <h2><font face="Garamond">Acessar resumo das decisões</font></h2>
-        <div id="decisao">
-            <form action="#" method="get" name="formPesquisa" id="formPesquisa">
-                <div>
-                    <label for="numeroAta"><font face="Garamond">Informe o número de Ata de Reunião: </font></label>
-                    <input type="number" name="numeroAta" id="numeroAta" />
-                </div>
-                <div>
-                <button onclick="consultarDecisoes()" class="btn btn-primary"><span class="glyphicon glyphicon-search"><font face="Garamond">  CONSULTAR</font></span></button>
-                </div>
-            </form>
-            <div id="resultadoPesquisa"></div>
-        </div>
-        <br>
-        <hr>
-        <br>
-        <h2><font face="Garamond">Registrar Atas de Reunião</font></h2>
-        <br>
-        <div id="registro">
-            <form action="#" method="POST" name="formRegistro" id="formRegistro">
-                <div>
-                    <label for="pauta"><font face="Garamond">Pauta da reunião: </font></label>
-                    <input type="text" name="pauta" id="pauta" size="80" />
-                </div>
-                <div>
-                    <label for="decisao"><font face="Garamond">Deliberações: </font></label>
-                    <input type="text" name="decisao" id="decisao" size="80" />
-                </div>
-                <div>
-                    <label for="data"><font face="Garamond">Data da Reunião (dd/mm/aaaa): </font></label>
-                    <input type="text" name="data" id="data" />
-                </div>
-                <div>
-                    <button onclick="ArquivarAta()" class="btn btn-danger"><font face="Garamond"><span class="glyphicon glyphicon-th"> GRAVAR</span></font></button>
-                </div>
-            </form>
+    <body>
+        <div class="container-fluid bg-2 text-center">
+    
+            <h1> <font face="Garamond">Consulta de Deliberações Societárias </font> </h1>
+            <h2> <font face="Garamond"><b>ABC Brasil S.A.</b></font></h2></div>
             <br>
-            <div>
-                <div id="statusTransacao">&nbsp;</div>
- 
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="connectToSmartContract.js"></script>
-    <script src="abi.js"></script>
-    <script>
+            <h2><font face="Garamond">Acessar resumo das decisões</font></h2>
+            <div id="decisao">
+                <form action="#" method="get" name="formPesquisa" id="formPesquisa">
+                    <div>
+                        <label for="numeroAta"><font face="Garamond">Informe o número de Ata de Reunião: </font></label>
+                        <input type="number" name="numeroAta" id="numeroAta" />
+                    </div>
+                    <div>
+                    <button onclick="consultarDecisoes()" class="btn btn-primary"><span class="glyphicon glyphicon-search"><font face="Garamond">  CONSULTAR</font></span></button>
+                    </div>
+                </form>
+                <div id="resultadoPesquisa"></div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <h2><font face="Garamond">Registrar Atas de Reunião</font></h2>
+            <br>
+            <div id="registro">
+                <form action="#" method="POST" name="formRegistro" id="formRegistro">
+                    <div>
+                        <label for="pauta"><font face="Garamond">Pauta da reunião: </font></label>
+                        <input type="text" name="pauta" id="pauta" size="80" />
+                    </div>
+                    <div>
+                        <label for="decisao"><font face="Garamond">Deliberações: </font></label>
+                        <input type="text" name="decisao" id="decisao" size="80" />
+                    </div>
+                    <div>
+                        <label for="data"><font face="Garamond">Data da Reunião (dd/mm/aaaa): </font></label>
+                        <input type="text" name="data" id="data" />
+                    </div>
+                    <div>
+                        <button onclick="ArquivarAta()" class="btn btn-danger"><font face="Garamond"><span class="glyphicon glyphicon-th"> GRAVAR</span></font></button>
+                    </div>
+                </form>
+                <br>
+                <div>
+                    <div id="statusTransacao">&nbsp;</div>
+    
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="connectToSmartContract.js"></script>
+        <script src="abi.js"></script>
+        <script>
 
-        var frmPesquisa = document.formPesquisa;
-        function consultarDecisoes() {
-            event.preventDefault();
-            $("#resultadoPesquisa").html("");
-            contract.ConsultaDeliberacoesConselho(frmPesquisa.numeroAta.value, function (erro, resultado) {
-                if (erro) {
-                    console.log("consultarDecisoes");
-                    console.error(erro);
-                    alert("Houve um erro na tentativa de consulta");
-                    frmPesquisa.numeroAta.value = "";
-                    return
-                }
-                $("#resultadoPesquisa").html("Resumo das deliberações: " + resultado);
-            })
-        }
+            var frmPesquisa = document.formPesquisa;
+            function consultarDecisoes() {
+                event.preventDefault();
+                $("#resultadoPesquisa").html("");
+                contract.ConsultaDeliberacoesConselho(frmPesquisa.numeroAta.value, function (erro, resultado) {
+                    if (erro) {
+                        console.log("consultarDecisoes");
+                        console.error(erro);
+                        alert("Houve um erro na tentativa de consulta");
+                        frmPesquisa.numeroAta.value = "";
+                        return
+                    }
+                    $("#resultadoPesquisa").html("Resumo das deliberações: " + resultado);
+                })
+            }
 
-        var frmPesquisa = document.formPesquisa;
-        function ConsultarData() {
-            event.preventDefault();
-            $("#resultadoPesquisa").html("");
-            contract.ConsultarData(frmPesquisa.numeroAta.value, function (erro, resultado) {
-                if (erro) {
-                    console.log("ConsultarData");
-                    console.error(erro);
-                    alert("Houve um erro na tentativa de consulta");
-                    frmPesquisa.numeroAta.value = "";
-                    return
-                }
-                $("#resultadoPesquisa").html("Data da reunião: " + resultado);
-            })
-        }
+            var frmPesquisa2 = document.formPesquisa;
+            function ConsultarData() {
+                event.preventDefault();
+                $("#resultadoPesquisa").html("");
+                contract.ConsultarData(frmPesquisa2.numeroAta.value, function (erro, resultado) {
+                    if (erro) {
+                        console.log("ConsultarData");
+                        console.error(erro);
+                        alert("Houve um erro na tentativa de consulta");
+                        frmPesquisa2.numeroAta.value = "";
+                        return
+                    }
+                    $("#resultadoPesquisa").html("Data da reunião: " + resultado);
+                })
+            }
 
-        var frmPesquisa = document.formPesquisa;
-        function ConsultarPauta() {
-            event.preventDefault();
-            $("#resultadoPesquisa").html("");
-            contract.ConsultarPauta(frmPesquisa.numeroAta.value, function (erro, resultado) {
-                if (erro) {
-                    console.log("consultarPauta");
-                    console.error(erro);
-                    alert("Houve um erro na tentativa de consulta");
-                    frmPesquisa.numeroAta.value = "";
-                    return
-                }
-                $("#resultadoPesquisa").html("Pauta: " + resultado);
-            })
-        }
+            var frmPesquisa3 = document.formPesquisa;
+            function ConsultarPauta() {
+                event.preventDefault();
+                $("#resultadoPesquisa").html("");
+                contract.ConsultarPauta(frmPesquisa3.numeroAta.value, function (erro, resultado) {
+                    if (erro) {
+                        console.log("consultarPauta");
+                        console.error(erro);
+                        alert("Houve um erro na tentativa de consulta");
+                        frmPesquisa3.numeroAta.value = "";
+                        return
+                    }
+                    $("#resultadoPesquisa").html("Pauta: " + resultado);
+                })
+            }
 
-        var frmRegistro = document.formRegistro;
-        function ArquivarAta() {
-            event.preventDefault();
-            $("#statusTransacao").html("&nbsp;");
-            contract.ArquivarAta(frmRegistro.pauta.value, frmRegistro.decisao.value, frmRegistro.data.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
-                if (erro) {
-                    console.log("ArquivarAta");
-                    console.error(erro);
-                    alert("Houve um erro ao arquivar esta ata");
-                    return
-                }
-                waitForTxToBeMined(resultado, "#statusTransacao");
-            })
-        }
+            var frmRegistro = document.formRegistro;
+            function ArquivarAta() {
+                event.preventDefault();
+                $("#statusTransacao").html("&nbsp;");
+                contract.ArquivarAta(frmRegistro.pauta.value, frmRegistro.decisao.value, frmRegistro.data.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                    if (erro) {
+                        console.log("ArquivarAta");
+                        console.error(erro);
+                        alert("Houve um erro ao arquivar esta ata");
+                        return
+                    }
+                    waitForTxToBeMined(resultado, "#statusTransacao");
+                })
+            }
 
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
