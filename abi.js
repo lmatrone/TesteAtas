@@ -93,52 +93,14 @@ const   contractABI = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "numeroAta",
-				"type": "uint256"
-			}
-		],
-		"name": "ConsultarData",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "numeroAta",
-				"type": "uint256"
-			}
-		],
-		"name": "ConsultarPauta",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
     
     if (network === "4") {
-        contractAddress = "0x3c0015480d2e8134452312f96d14a3114fd8bd76"; 
+        contractAddress = "0x9593b9c84d47401146554e9d0233cfd7a35883f9"; 
     
     } else {
-    contractAddress = "0x3c0015480d2e8134452312f96d14a3114fd8bd76"; 
+    contractAddress = "0x9593b9c84d47401146554e9d0233cfd7a35883f9"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
