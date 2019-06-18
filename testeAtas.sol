@@ -23,11 +23,4 @@ contract DeliberacoesConselhoAdm {
         
     }
     
-    function ConsultarData(uint numeroAta) public view returns (string memory) {
-        return book1[numeroAta].data;
-    }
-    
-    function ConsultarPauta(uint numeroAta) public view returns (string memory) {
-        return book1[numeroAta].pauta;
-    }
 }
