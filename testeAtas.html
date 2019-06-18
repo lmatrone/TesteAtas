@@ -77,36 +77,7 @@
                     $("#resultadoPesquisa").html("Resumo das deliberações: " + resultado);
                 })
             }
-            var frmPesquisa2 = document.formPesquisa2;
-            function ConsultarData() {
-                event.preventDefault();
-                $("#resultadoPesquisa").html("");
-                contract.ConsultarData(frmPesquisa2.numeroAta.value, function (erro, resultado) {
-                    if (erro) {
-                        console.log("ConsultarData");
-                        console.error(erro);
-                        alert("Ata inexistente ou não registrada");
-                        frmPesquisa2.numeroAta.value = "";
-                        return
-                    }
-                    $("#resultadoPesquisa").html("Data da reunião: " + resultado);
-                })
-            }
-            var frmPesquisa3 = document.formPesquisa3;
-            function ConsultarPauta() {
-                event.preventDefault();
-                $("#resultadoPesquisa").html("");
-                contract.ConsultarPauta(frmPesquisa3.numeroAta.value, function (erro, resultado) {
-                    if (erro) {
-                        console.log("consultarPauta");
-                        console.error(erro);
-                        alert("Ata inexistente ou não registrada");
-                        frmPesquisa3.numeroAta.value = "";
-                        return
-                    }
-                    $("#resultadoPesquisa").html("Pauta: " + resultado);
-                })
-            }
+            
             var frmRegistro = document.formRegistro;
             function ArquivarAta() {
                 event.preventDefault();
